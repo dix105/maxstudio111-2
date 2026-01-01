@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Glasses Filter: Virtual Try-On Glasses for Free</title>
+    <meta name="description" content="Explore how eyeglass frames suit on you with our AI glasses filter. See accurate virtual try-on results and compare multiple styles before selecting your ideal pair.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Modals -->
+    <div id="privacy-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeModal('privacy-modal')">&times;</span>
+            <div class="modal-body">
+                <h2>Privacy Policy</h2>
+                <p><strong>Last Updated:</strong> 2024</p>
+
+                <h4>1. Data Collection</h4>
+                <p>We collect only the minimum data necessary:</p>
+                <ul>
+                  <li>Images you upload for processing (temporarily stored)</li>
+                  <li>Basic usage analytics (non-personal)</li>
+                  <li>Browser type and device information</li>
+                </ul>
+
+                <h4>2. Image Processing</h4>
+                <p>Your uploaded images are:</p>
+                <ul>
+                  <li>Processed securely on our servers</li>
+                  <li>Automatically deleted within 24 hours</li>
+                  <li>Never shared with third parties</li>
+                  <li>Not used for AI training without consent</li>
+                </ul>
+
+                <h4>3. Data Security</h4>
+                <p>All data transmission is encrypted using SSL/TLS protocols.</p>
+
+                <h4>4. Cookies</h4>
+                <p>We use essential cookies only for site functionality.</p>
+
+                <h4>5. Your Rights</h4>
+                <p>You have the right to request deletion of any stored data.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closeModal('terms-modal')">&times;</span>
+            <div class="modal-body">
+                <h2>Terms of Service</h2>
+                <p><strong>Last Updated:</strong> 2024</p>
+
+                <h4>1. Acceptance of Terms</h4>
+                <p>By using this service, you agree to these Terms.</p>
+
+                <h4>2. Service Description</h4>
+                <p>This service provides AI-powered image transformation. Provided "as-is" without warranties.</p>
+
+                <h4>3. Acceptable Use</h4>
+                <p>You agree NOT to upload:</p>
+                <ul>
+                  <li>Illegal or unlawful content</li>
+                  <li>Explicit, pornographic, or obscene material</li>
+                  <li>Content depicting violence or harm</li>
+                  <li>Images you do not have rights to use</li>
+                </ul>
+
+                <h4>4. Intellectual Property</h4>
+                <p>You retain full ownership of your original images. Generated effects are royalty-free for personal and commercial use.</p>
+
+                <h4>5. Limitation of Liability</h4>
+                <p>We are not liable for any damages arising from the use of this service.</p>
+
+                <h4>6. Modifications</h4>
+                <p>We may update these terms at any time. Continued use constitutes acceptance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-glasses"></i> Maxstudio111
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#playground">Try On</a></li>
+                    <li><a href="#how-to-use">How it Works</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#playground" class="btn btn-sm btn-primary header-cta">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Layer 1: Background Image -->
+        <div class="hero-bg-image">
+            <img src="images/hero-bg.jpg" alt="AI Glasses Filter Background">
+        </div>
+        
+        <!-- Layer 2: Animation Overlay (Gradient Mesh) -->
+        <div class="hero-bg-animation">
+            <div class="mesh-gradient"></div>
+        </div>
+        
+        <!-- Layer 3: Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Layer 4: Content -->
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">AI Glasses Filter</h1>
+            <p class="hero-subtitle">Instantly see yourself in different frames or explore new eyewear looks with Remix AI free AI glasses filter—quick and easy!</p>
+            <div class="hero-actions">
+                <a href="#playground" class="btn btn-primary btn-lg pulse-effect">Apply Image Effect</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Playground Section -->
+    <section id="playground">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Glasses Filter Free</h2>
+                <p>Instantly see yourself in different frames or explore new eyewear looks with Remix AI free AI glasses filter—quick and easy!</p>
+            </div>
+
+            <div class="playground-grid grid-2">
+                <!-- Left: Controls -->
+                <div class="playground-panel glass-panel">
+                    <h3>Upload Photo</h3>
+                    <div id="upload-zone" class="upload-zone">
+                        <div class="upload-content">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p>Drag & Drop or Click to Upload</p>
+                            <input type="file" id="file-input" accept="image/*" hidden>
+                        </div>
+                        <img id="preview-image" class="hidden" alt="Upload Preview">
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="generate-btn" class="btn btn-primary btn-full" disabled>
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Apply Effect
+                        </button>
+                        <button id="reset-btn" class="btn btn-secondary btn-full hidden">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Result -->
+                <div class="playground-panel glass-panel">
+                    <h3>Result</h3>
+                    <div id="result-container" class="result-display">
+                        <div id="result-placeholder" class="placeholder-content">
+                            <i class="fa-solid fa-image"></i>
+                            <p>Result will appear here</p>
+                        </div>
+                        <div id="loading-state" class="loading-state hidden">
+                            <div class="spinner"></div>
+                            <p>Processing...</p>
+                        </div>
+                        <img id="result-final" class="hidden" alt="AI Result">
+                    </div>
+                    
+                    <div class="actions">
+                        <button id="download-btn" class="btn btn-accent btn-full" disabled>
+                            <i class="fa-solid fa-download"></i> Download Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use">
+        <div class="container">
+            <div class="section-header">
+                <h2>How to Use AI Glasses Filter?</h2>
+                <p>Follow these simple steps to virtually try on different glasses using our AI filter.</p>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card glass-panel card-lift">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-upload"></i>
+                    </div>
+                    <h3>Upload Your Photo</h3>
+                    <p>Choose a clear, front-facing picture from your gallery to begin the process.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card glass-panel card-lift">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-wand-sparkles"></i>
+                    </div>
+                    <h3>Apply Glasses Filter</h3>
+                    <p>Select a style from our collection and let the AI automatically place the glasses on your face.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card glass-panel card-lift">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-download"></i>
+                    </div>
+                    <h3>Download Your Image</h3>
+                    <p>Save the new photo with the virtual glasses to your device or share it online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>See These Incredible Results</h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item glass-panel card-lift">
+                    <img src="images/gallery-result-1.jpg" alt="Fashionable young woman wearing cat-eye glasses">
+                </div>
+                <div class="gallery-item glass-panel card-lift">
+                    <img src="images/gallery-result-2.jpg" alt="Professional man wearing rimless rectangular glasses">
+                </div>
+                <div class="gallery-item glass-panel card-lift">
+                    <img src="images/gallery-result-3.jpg" alt="Creative student wearing bold round glasses">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs">
+        <div class="container">
+            <div class="section-header">
+                <h2>FAQs About AI Glasses Filter</h2>
+            </div>
+            
+            <div class="accordion">
+                <!-- FAQ 1 -->
+                <div class="accordion-item glass-panel">
+                    <button class="accordion-header">
+                        What is the AI glasses filter?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>The AI glasses filter is a virtual tool that lets you see how different eyeglass frames look on your face by adding them to your photos or through a live preview.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item glass-panel">
+                    <button class="accordion-header">
+                        How does the virtual try-on work?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Our AI tool uses artificial intelligence to detect your facial features and accurately position frames, giving a realistic preview of how each style fits your face.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item glass-panel">
+                    <button class="accordion-header">
+                        Can I save or download the results?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, Remix AI glasses tools allow you to download or save your try-on images so you can share or revisit them later.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="accordion-item glass-panel">
+                    <button class="accordion-header">
+                        Can I use it on mobile and desktop?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, Remix AI glasses filter works on both mobile devices and desktop computers, offering flexibility wherever you are.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="accordion-item glass-panel">
+                    <button class="accordion-header">
+                        How long does it take to see the results?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Results are generated instantly, letting you try multiple frames in just a few seconds. Usually, it depends on the image quality and clarity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fa-solid fa-glasses"></i> Maxstudio111</h3>
+                    <p>Transform your look with AI-powered eyewear visualization.</p>
+                </div>
+                <div class="footer-links">
+                    <button data-modal-target="privacy-modal">Privacy Policy</button>
+                    <button data-modal-target="terms-modal">Terms of Service</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Maxstudio111. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
